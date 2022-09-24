@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		DB54055428DB0B1F0079DE46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54055328DB0B1F0079DE46 /* AppDelegate.swift */; };
 		DB54055628DB0B1F0079DE46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54055528DB0B1F0079DE46 /* SceneDelegate.swift */; };
-		DB54055828DB0B1F0079DE46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54055728DB0B1F0079DE46 /* ViewController.swift */; };
-		DB54055B28DB0B1F0079DE46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB54055928DB0B1F0079DE46 /* Main.storyboard */; };
 		DB54055D28DB0B200079DE46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB54055C28DB0B200079DE46 /* Assets.xcassets */; };
 		DB54056028DB0B200079DE46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB54055E28DB0B200079DE46 /* LaunchScreen.storyboard */; };
+		DB54056828DB0B940079DE46 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056728DB0B940079DE46 /* MainTabBarController.swift */; };
+		DB54056A28DB0BB50079DE46 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056928DB0BB50079DE46 /* MapViewController.swift */; };
+		DB54056C28DB0BE20079DE46 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056B28DB0BE20079DE46 /* LocationService.swift */; };
+		DB54056E28DB0BF70079DE46 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056D28DB0BF70079DE46 /* MapPresenter.swift */; };
+		DB54057028DEFA1B0079DE46 /* support.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056F28DEFA1B0079DE46 /* support.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DB54055028DB0B1F0079DE46 /* MyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB54055328DB0B1F0079DE46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB54055528DB0B1F0079DE46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DB54055728DB0B1F0079DE46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DB54055A28DB0B1F0079DE46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB54055C28DB0B200079DE46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB54055F28DB0B200079DE46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB54056128DB0B200079DE46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB54056728DB0B940079DE46 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		DB54056928DB0BB50079DE46 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DB54056B28DB0BE20079DE46 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		DB54056D28DB0BF70079DE46 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		DB54056F28DEFA1B0079DE46 /* support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = support.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +64,14 @@
 			children = (
 				DB54055328DB0B1F0079DE46 /* AppDelegate.swift */,
 				DB54055528DB0B1F0079DE46 /* SceneDelegate.swift */,
-				DB54055728DB0B1F0079DE46 /* ViewController.swift */,
-				DB54055928DB0B1F0079DE46 /* Main.storyboard */,
+				DB54056728DB0B940079DE46 /* MainTabBarController.swift */,
+				DB54056928DB0BB50079DE46 /* MapViewController.swift */,
+				DB54056B28DB0BE20079DE46 /* LocationService.swift */,
+				DB54056D28DB0BF70079DE46 /* MapPresenter.swift */,
 				DB54055C28DB0B200079DE46 /* Assets.xcassets */,
 				DB54055E28DB0B200079DE46 /* LaunchScreen.storyboard */,
 				DB54056128DB0B200079DE46 /* Info.plist */,
+				DB54056F28DEFA1B0079DE46 /* support.swift */,
 			);
 			path = MyMap;
 			sourceTree = "<group>";
@@ -127,7 +136,6 @@
 			files = (
 				DB54056028DB0B200079DE46 /* LaunchScreen.storyboard in Resources */,
 				DB54055D28DB0B200079DE46 /* Assets.xcassets in Resources */,
-				DB54055B28DB0B1F0079DE46 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +146,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB54055828DB0B1F0079DE46 /* ViewController.swift in Sources */,
 				DB54055428DB0B1F0079DE46 /* AppDelegate.swift in Sources */,
+				DB54057028DEFA1B0079DE46 /* support.swift in Sources */,
+				DB54056828DB0B940079DE46 /* MainTabBarController.swift in Sources */,
+				DB54056C28DB0BE20079DE46 /* LocationService.swift in Sources */,
+				DB54056A28DB0BB50079DE46 /* MapViewController.swift in Sources */,
 				DB54055628DB0B1F0079DE46 /* SceneDelegate.swift in Sources */,
+				DB54056E28DB0BF70079DE46 /* MapPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DB54055928DB0B1F0079DE46 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DB54055A28DB0B1F0079DE46 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DB54055E28DB0B200079DE46 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,9 +296,9 @@
 				INFOPLIST_FILE = MyMap/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,9 +324,9 @@
 				INFOPLIST_FILE = MyMap/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
