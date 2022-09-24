@@ -7,16 +7,14 @@
 
 
 import UIKit
+import Foundation
 import MapKit
 
 
 class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     let presenter: MapPresenterProtocol
-    let locationService = LocationService()
     let annotation = MKPointAnnotation()
-
-
 
     private lazy var mapKitView: MKMapView = {
         let view = MKMapView()
@@ -25,17 +23,55 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             view.mapType = .standard
         }
+        view.showsCompass = true
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
+    private lazy var centrGeoButton: UIButton = {
+        let buttom = UIButton(type: .custom)
+        buttom.setImage(UIImage(systemName: "location.fill")?.applyingSymbolConfiguration(.init(pointSize: 30)), for: .normal)
+        buttom.tintColor = UIColor(named: "barTintColor")
+        buttom.backgroundColor = .white
+        buttom.layer.cornerRadius = 25
+        buttom.layer.borderWidth = 0.5
+        buttom.layer.borderColor = UIColor(named: "barTintColor")?.cgColor
+        buttom.addTarget(self, action: #selector(tapCentr), for: .touchUpInside)
+        buttom.translatesAutoresizingMaskIntoConstraints = false
+        return buttom
+    }()
+
+
+    private lazy var clearButton: UIButton = {
+        let buttom = UIButton(type: .custom)
+        buttom.setImage(UIImage(systemName: "trash.circle")?.applyingSymbolConfiguration(.init(pointSize: 50)), for: .normal)
+        buttom.tintColor = UIColor(named: "barTintColor")
+        buttom.backgroundColor = .white
+        buttom.layer.cornerRadius = 25
+        buttom.layer.borderWidth = 0.5
+        buttom.layer.borderColor = UIColor(named: "barTintColor")?.cgColor
+        buttom.addTarget(self, action: #selector(clearAction), for: .touchUpInside)
+        buttom.translatesAutoresizingMaskIntoConstraints = false
+        return buttom
+    }()
+
+    private lazy var settingButton: UIButton = {
+        let buttom = UIButton(type: .custom)
+        buttom.setImage(UIImage(systemName: "square.3.layers.3d.top.filled")?.applyingSymbolConfiguration(.init(pointSize: 30)), for: .normal)
+        buttom.tintColor = UIColor(named: "barTintColor")
+        buttom.backgroundColor = .white
+        buttom.layer.cornerRadius = 25
+        buttom.layer.borderWidth = 0.5
+        buttom.layer.borderColor = UIColor(named: "barTintColor")?.cgColor
+        buttom.addTarget(self, action: #selector(settingAction), for: .touchUpInside)
+        buttom.translatesAutoresizingMaskIntoConstraints = false
+        return buttom
+    }()
+
     init(presenter: MapPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
-        locationService.delegate = self
-
-
     }
 
     required init?(coder: NSCoder) {
@@ -47,7 +83,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupLayout()
-        locationService.startLocation()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addPin))
         tapGesture.delegate = self
         view.addGestureRecognizer(tapGesture)
@@ -56,67 +91,77 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     private func setupLayout() {
         view.addSubview(mapKitView)
+        mapKitView.addSubview(centrGeoButton)
+        mapKitView.addSubview(clearButton)
+        mapKitView.addSubview(settingButton)
         NSLayoutConstraint.activate([
             mapKitView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapKitView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            mapKitView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mapKitView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mapKitView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapKitView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mapKitView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            centrGeoButton.bottomAnchor.constraint(equalTo: mapKitView.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            centrGeoButton.trailingAnchor.constraint(equalTo: mapKitView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            centrGeoButton.heightAnchor.constraint(equalToConstant: 50),
+            centrGeoButton.widthAnchor.constraint(equalToConstant: 50),
+
+            clearButton.heightAnchor.constraint(equalToConstant: 50),
+            clearButton.widthAnchor.constraint(equalToConstant: 50),
+            clearButton.trailingAnchor.constraint(equalTo: mapKitView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            clearButton.bottomAnchor.constraint(equalTo: centrGeoButton.topAnchor, constant: -10),
+
+            settingButton.heightAnchor.constraint(equalToConstant: 50),
+            settingButton.widthAnchor.constraint(equalToConstant: 50),
+            settingButton.trailingAnchor.constraint(equalTo: mapKitView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            settingButton.bottomAnchor.constraint(equalTo: clearButton.topAnchor, constant: -10)
         ])
     }
 
     private func showCurrentGeolocation(_ location: CLLocationCoordinate2D) {
-        mapKitView.setCenter(location, animated: false)
+        mapKitView.setCenter(location, animated: true)
         let region = MKCoordinateRegion(center: location, latitudinalMeters: 1500, longitudinalMeters: 1500)
         mapKitView.setRegion(region, animated: true)
         mapKitView.showsUserLocation = true
 
     }
 
-    private func requestLocation(_ location: CLLocationCoordinate2D) {
-        DispatchQueue.main.async {
-            if self.locationService.locationManager.authorizationStatus == .authorizedWhenInUse {
-                self.showCurrentGeolocation(location)
-            }
-        }
-    }
 
-
-    @objc private func addPin(gestureRecognizer: UILongPressGestureRecognizer) {
+    @objc private func addPin(gestureRecognizer: UITapGestureRecognizer) {
+        mapKitView.removeAnnotations(mapKitView.annotations)
         let location = gestureRecognizer.location(in: mapKitView)
         let coordinate = mapKitView.convert(location, toCoordinateFrom: mapKitView)
         annotation.coordinate = coordinate
         mapKitView.addAnnotation(annotation)
 
+    }
+
+    @objc private func tapCentr() {
+        guard let userLocation = presenter.location else { return }
+        showCurrentGeolocation(userLocation)
+    }
+
+    @objc private func clearAction() {
+        mapKitView.removeAnnotations(mapKitView.annotations)
+        mapKitView.overlays.forEach { mapKitView.removeOverlay($0) }
 
     }
 
+    @objc private func settingAction() {
 
-
-
-
-
-
-
+    }
 }
 
 
 // MARK: - MapViewProtocol
 extension MapViewController: MapViewProtocol {
 
-
-}
-
-
-
-// MARK: - LocationServiceDelegate
-extension MapViewController: LocationServiceDelegate {
-
-    func didUpdateLocation(withLocation location: CLLocationCoordinate2D) {
-        requestLocation(location)
+    func requestLocation(_ location: CLLocationCoordinate2D) {
+        presenter.requestLocation {
+            self.showCurrentGeolocation(location)
+        }
     }
 
-
-    func alertError() {
+    func alertErrorMap() {
         let alertController = UIAlertController(title: "Attention",
                                                 message: "The application requires access to geolocation",
                                                 preferredStyle: .alert)
@@ -144,8 +189,46 @@ extension MapViewController: LocationServiceDelegate {
 // MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
 
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        return MKAnnotationView()
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = .systemBlue
+        renderer.lineWidth = 5.0
+        return renderer
     }
+
+    func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+
+
+        mapView.overlays.forEach { mapView.removeOverlay($0) }
+        guard let coordinate = self.presenter.location else { return }
+        let annotationUser = annotation.coordinate
+        let startPoint = MKPlacemark(coordinate: coordinate)
+        let sourseMapItem = MKMapItem(placemark: startPoint)
+        let endPoint = MKPlacemark(coordinate: annotationUser)
+        let destinationMapItem = MKMapItem(placemark: endPoint)
+
+        let request = MKDirections.Request()
+        request.source = sourseMapItem
+        request.destination = destinationMapItem
+        request.transportType = .walking
+
+        let directions = MKDirections(request: request)
+        directions.calculate { responce, error in
+            if error != nil {
+                return
+            }
+            guard let responce = responce, let route = responce.routes.first else { return }
+            mapView.addOverlay(route.polyline, level: .aboveRoads)
+            let routeRect = route.polyline.boundingMapRect
+            mapView.setRegion(MKCoordinateRegion(routeRect), animated: true)
+        }
+
+
+
+
+
+    }
+
+
 
 }
