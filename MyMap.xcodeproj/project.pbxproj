@@ -15,6 +15,8 @@
 		DB54056A28DB0BB50079DE46 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056928DB0BB50079DE46 /* MapViewController.swift */; };
 		DB54056C28DB0BE20079DE46 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056B28DB0BE20079DE46 /* LocationService.swift */; };
 		DB54056E28DB0BF70079DE46 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056D28DB0BF70079DE46 /* MapPresenter.swift */; };
+		DB5888E228DF419E0048EA88 /* SettingsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5888E128DF419E0048EA88 /* SettingsMap.swift */; };
+		DB5888E428DF6DD60048EA88 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5888E328DF6DD60048EA88 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		DB54056928DB0BB50079DE46 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DB54056B28DB0BE20079DE46 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		DB54056D28DB0BF70079DE46 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		DB5888E128DF419E0048EA88 /* SettingsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMap.swift; sourceTree = "<group>"; };
+		DB5888E328DF6DD60048EA88 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 				DB54055528DB0B1F0079DE46 /* SceneDelegate.swift */,
 				DB54056728DB0B940079DE46 /* MainTabBarController.swift */,
 				DB54056928DB0BB50079DE46 /* MapViewController.swift */,
+				DB5888E328DF6DD60048EA88 /* SettingViewController.swift */,
+				DB5888E128DF419E0048EA88 /* SettingsMap.swift */,
 				DB54056B28DB0BE20079DE46 /* LocationService.swift */,
 				DB54056D28DB0BF70079DE46 /* MapPresenter.swift */,
 				DB54055C28DB0B200079DE46 /* Assets.xcassets */,
@@ -146,8 +152,10 @@
 				DB54055428DB0B1F0079DE46 /* AppDelegate.swift in Sources */,
 				DB54056828DB0B940079DE46 /* MainTabBarController.swift in Sources */,
 				DB54056C28DB0BE20079DE46 /* LocationService.swift in Sources */,
+				DB5888E428DF6DD60048EA88 /* SettingViewController.swift in Sources */,
 				DB54056A28DB0BB50079DE46 /* MapViewController.swift in Sources */,
 				DB54055628DB0B1F0079DE46 /* SceneDelegate.swift in Sources */,
+				DB5888E228DF419E0048EA88 /* SettingsMap.swift in Sources */,
 				DB54056E28DB0BF70079DE46 /* MapPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +302,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -322,7 +330,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

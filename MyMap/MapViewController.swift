@@ -18,11 +18,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     private lazy var mapKitView: MKMapView = {
         let view = MKMapView()
-        if #available(iOS 16, *) {
-            view.preferredConfiguration.elevationStyle = .realistic
-        } else {
-            view.mapType = .standard
-        }
         view.showsCompass = true
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -69,23 +64,51 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         return buttom
     }()
 
+
     init(presenter: MapPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setLayers()
+        setupLayout()
 
+    }
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupLayout()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addPin))
         tapGesture.delegate = self
         view.addGestureRecognizer(tapGesture)
+        NotificationCenter.default.addObserver(forName: Notification.Name("setup"), object: nil, queue: .main) { _ in
+            self.setLayers()
+        }
+
+    }
+
+     func setLayers() {
+            let segment = UserDefaults.standard.object(forKey: "Settings") as? String ?? SettingsMapView.arrayLayers[0]
+         print(segment)
+            if segment == SettingsMapView.arrayLayers[0] {
+                if #available(iOS 16, *) {
+                    self.mapKitView.preferredConfiguration.elevationStyle = .realistic
+                }
+                self.mapKitView.mapType = .standard
+            } else if segment == SettingsMapView.arrayLayers[1] {
+                self.mapKitView.mapType = .hybridFlyover
+            } else if segment == SettingsMapView.arrayLayers[2] {
+                self.mapKitView.mapType = .hybrid
+            }
+         
+
 
     }
 
@@ -94,6 +117,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         mapKitView.addSubview(centrGeoButton)
         mapKitView.addSubview(clearButton)
         mapKitView.addSubview(settingButton)
+
         NSLayoutConstraint.activate([
             mapKitView.topAnchor.constraint(equalTo: view.topAnchor),
             mapKitView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -113,7 +137,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             settingButton.heightAnchor.constraint(equalToConstant: 50),
             settingButton.widthAnchor.constraint(equalToConstant: 50),
             settingButton.trailingAnchor.constraint(equalTo: mapKitView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            settingButton.bottomAnchor.constraint(equalTo: clearButton.topAnchor, constant: -10)
+            settingButton.bottomAnchor.constraint(equalTo: clearButton.topAnchor, constant: -10),
+
         ])
     }
 
@@ -147,7 +172,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @objc private func settingAction() {
-
+        let settingVC = SettingViewController()
+        present(settingVC, animated: true)
     }
 }
 
@@ -196,9 +222,9 @@ extension MapViewController: MKMapViewDelegate {
         return renderer
     }
 
+
     func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-
-
+        
         mapView.overlays.forEach { mapView.removeOverlay($0) }
         guard let coordinate = self.presenter.location else { return }
         let annotationUser = annotation.coordinate
@@ -222,13 +248,6 @@ extension MapViewController: MKMapViewDelegate {
             let routeRect = route.polyline.boundingMapRect
             mapView.setRegion(MKCoordinateRegion(routeRect), animated: true)
         }
-
-
-
-
-
     }
-
-
 
 }
