@@ -15,7 +15,6 @@
 		DB54056A28DB0BB50079DE46 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056928DB0BB50079DE46 /* MapViewController.swift */; };
 		DB54056C28DB0BE20079DE46 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056B28DB0BE20079DE46 /* LocationService.swift */; };
 		DB54056E28DB0BF70079DE46 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056D28DB0BF70079DE46 /* MapPresenter.swift */; };
-		DB54057028DEFA1B0079DE46 /* support.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB54056F28DEFA1B0079DE46 /* support.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		DB54056928DB0BB50079DE46 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DB54056B28DB0BE20079DE46 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		DB54056D28DB0BF70079DE46 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
-		DB54056F28DEFA1B0079DE46 /* support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = support.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +69,6 @@
 				DB54055C28DB0B200079DE46 /* Assets.xcassets */,
 				DB54055E28DB0B200079DE46 /* LaunchScreen.storyboard */,
 				DB54056128DB0B200079DE46 /* Info.plist */,
-				DB54056F28DEFA1B0079DE46 /* support.swift */,
 			);
 			path = MyMap;
 			sourceTree = "<group>";
@@ -147,7 +144,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB54055428DB0B1F0079DE46 /* AppDelegate.swift in Sources */,
-				DB54057028DEFA1B0079DE46 /* support.swift in Sources */,
 				DB54056828DB0B940079DE46 /* MainTabBarController.swift in Sources */,
 				DB54056C28DB0BE20079DE46 /* LocationService.swift in Sources */,
 				DB54056A28DB0BB50079DE46 /* MapViewController.swift in Sources */,
@@ -298,7 +294,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,7 +322,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
