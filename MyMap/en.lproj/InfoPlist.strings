@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  MyMap
+
+  Created by Руслан Магомедов on 25.09.2022.
+  
+*/
+
+
+"UILaunchStoryboardName" = "LaunchScreen";
+NSLocationWhenInUseUsageDescription = "The application requires access to geolocation";
+

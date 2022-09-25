@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  MyMap
+
+  Created by Руслан Магомедов on 25.09.2022.
+  
+*/
+
+// Добавил локализацию LaunchScreen - для практики
+"UILaunchStoryboardName" = "LaunchScreen_ru";
+NSLocationWhenInUseUsageDescription = "Приложению требуется доступ к геолокации";

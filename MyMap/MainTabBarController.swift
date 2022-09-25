@@ -15,10 +15,10 @@ final class MainTabBarController: UITabBarController {
         let view = MapViewController(presenter: presenter)
         presenter.view = view
         let navigation = UINavigationController(rootViewController: view)
-        navigation.tabBarItem = UITabBarItem(title: "My map",
+        navigation.tabBarItem = UITabBarItem(title: "title_map".localized,
                                              image: UIImage(systemName: "map"),
                                              selectedImage: UIImage(systemName: "map.fil"))
-        navigation.navigationBar.topItem?.title = "My map"
+        navigation.navigationBar.topItem?.title = "title_map".localized
         return navigation
     }()
 

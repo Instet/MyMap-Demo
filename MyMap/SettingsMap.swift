@@ -12,7 +12,9 @@ final class SettingsMapView: UIView {
     var callback: () -> Void
 
 
-    static let arrayLayers = ["Стандарт", "Рельеф", "Гибрид"]
+    static let arrayLayers = ["standart_layer".localized,
+                              "hybrid_layer".localized,
+                              "relief_layer".localized]
 
     private lazy var contentView: UIView = {
         let view = UIView()
@@ -25,7 +27,7 @@ final class SettingsMapView: UIView {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Настройки"
+        label.text = "settings".localized
         label.font = .systemFont(ofSize: 17, weight: .medium)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +39,7 @@ final class SettingsMapView: UIView {
         button.setImage(UIImage(systemName: "multiply"), for: .normal)
         button.tintColor = .systemGray
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(setupLayerAndHiddenView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(hiddenView), for: .touchUpInside)
         return button
     }()
 
@@ -47,6 +49,7 @@ final class SettingsMapView: UIView {
         segment.selectedSegmentTintColor = UIColor(named: "barTintColor")
         segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
         segment.translatesAutoresizingMaskIntoConstraints = false
+        segment.addTarget(self, action: #selector(changeLayer), for: .valueChanged)
         return segment
     }()
 
@@ -92,25 +95,29 @@ final class SettingsMapView: UIView {
 
     }
 
-    @objc private func setupLayerAndHiddenView() {
-        let index = settingsLayers.selectedSegmentIndex
-        let temp = SettingsMapView.arrayLayers[index]
-        UserDefaults.standard.set(temp, forKey: "Settings")
-        NotificationCenter.default.post(name: Notification.Name("setup"), object: nil)
+    @objc private func hiddenView() {
         callback()
 
 
     }
 
     private func setupSettings() {
-        let layer = UserDefaults.standard.object(forKey: "Settings") as? String ?? "Стандарт"
-        if layer == "Стандарт" {
+        let layer = UserDefaults.standard.object(forKey: "Settings") as? String ?? "standart_layer".localized
+        if layer == "standart_layer".localized {
             settingsLayers.selectedSegmentIndex = 0
-        } else if layer == "Рельеф" {
+        } else if layer == "hybrid_layer".localized {
             settingsLayers.selectedSegmentIndex = 1
-        } else if layer == "Гибрид"{
+        } else if layer == "hybrid_layer".localized {
             settingsLayers.selectedSegmentIndex = 2
         }
+    }
+
+    @objc func changeLayer() {
+        let index = settingsLayers.selectedSegmentIndex
+        let temp = SettingsMapView.arrayLayers[index]
+        UserDefaults.standard.set(temp, forKey: "Settings")
+        NotificationCenter.default.post(name: Notification.Name("setup"), object: nil)
+
     }
 
 

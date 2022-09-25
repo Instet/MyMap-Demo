@@ -12,7 +12,7 @@ class SettingViewController: UIViewController {
     private lazy var settingView: SettingsMapView = {
         let view = SettingsMapView {
             self.dismiss(animated: true)
-            }
+        }
         return view
     }()
 
@@ -31,6 +31,8 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hiddenView))
+        view.addGestureRecognizer(tapGesture)
     }
 
     private func setupLayout() {
@@ -39,10 +41,13 @@ class SettingViewController: UIViewController {
         NSLayoutConstraint.activate([
             settingView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             settingView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            settingView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            settingView.heightAnchor.constraint(equalToConstant: 100)
+            settingView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60),
+            settingView.heightAnchor.constraint(equalToConstant: 200)
 
         ])
+    }
+    @objc private func hiddenView() {
+        dismiss(animated: true)
     }
 
 

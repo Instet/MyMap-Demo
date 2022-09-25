@@ -2,8 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,12 +28,24 @@
                                 </constraints>
                                 <imageReference key="image" image="map" catalog="system" symbolScale="medium"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Map" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GJ-WP-66i">
+                                <rect key="frame" x="151.66666666666666" y="275" width="87" height="30"/>
+                                <color key="tintColor" red="0.22745099660000001" green="0.49019610879999997" blue="0.52549022440000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
+                                <color key="textColor" name="barTintColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bBK-oe-1D3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="WW7-jP-ish"/>
                             <constraint firstItem="bBK-oe-1D3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aa1-Yf-h9a"/>
+                            <constraint firstItem="bBK-oe-1D3" firstAttribute="top" secondItem="2GJ-WP-66i" secondAttribute="bottom" constant="23.666666666666686" id="lcy-rv-aeK"/>
+                            <constraint firstItem="2GJ-WP-66i" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rpI-B8-XOZ"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -42,6 +56,9 @@
     </scenes>
     <resources>
         <image name="map" catalog="system" width="128" height="112"/>
+        <namedColor name="barTintColor">
+            <color red="0.22699999809265137" green="0.49000000953674316" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

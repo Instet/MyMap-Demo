@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  MyMap
+
+  Created by Руслан Магомедов on 25.09.2022.
+  
+*/
+
+"settings" = "Настройки";
+"title_map" = "Моя Карта";
+
+"standart_layer" = "Стандарт";
+"relief_layer" = "Рельеф";
+"hybrid_layer" = "Гибрид";
+
+"alert_title" = "Внимание";
+"alert_message" = "Приложению требуется доступ к геолокации";
+"cancel_alert" = "Отмена";
+"setting_alert" = "Настройки";

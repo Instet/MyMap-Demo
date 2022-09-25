@@ -81,7 +81,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         setupLayout()
 
     }
- 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -92,22 +92,32 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             self.setLayers()
         }
 
+        let date = Date()
+        let dateFormated = DateFormatter()
+        dateFormated.dateStyle = .full
+        dateFormated.timeStyle = .full
+        dateFormated.locale = Locale.current
+        print(dateFormated.string(from: date) + "\n---------------")
+
     }
 
-     func setLayers() {
-            let segment = UserDefaults.standard.object(forKey: "Settings") as? String ?? SettingsMapView.arrayLayers[0]
-         print(segment)
-            if segment == SettingsMapView.arrayLayers[0] {
-                if #available(iOS 16, *) {
-                    self.mapKitView.preferredConfiguration.elevationStyle = .realistic
-                }
-                self.mapKitView.mapType = .standard
-            } else if segment == SettingsMapView.arrayLayers[1] {
-                self.mapKitView.mapType = .hybridFlyover
-            } else if segment == SettingsMapView.arrayLayers[2] {
-                self.mapKitView.mapType = .hybrid
+    func setLayers() {
+        let segment = UserDefaults.standard.object(forKey: "Settings") as? String ?? SettingsMapView.arrayLayers[0]
+        if segment == SettingsMapView.arrayLayers[0] {
+            if #available(iOS 16, *) {
+                self.mapKitView.preferredConfiguration.elevationStyle = .realistic
             }
-         
+            self.mapKitView.mapType = .standard
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        } else if segment == SettingsMapView.arrayLayers[1] {
+            self.mapKitView.mapType = .hybrid
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
+        } else if segment == SettingsMapView.arrayLayers[2] {
+            self.mapKitView.mapType = .satellite
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
+
+        }
+
 
 
     }
@@ -188,11 +198,11 @@ extension MapViewController: MapViewProtocol {
     }
 
     func alertErrorMap() {
-        let alertController = UIAlertController(title: "Attention",
-                                                message: "The application requires access to geolocation",
+        let alertController = UIAlertController(title: "alert_title".localized,
+                                                message: "alert_message".localized,
                                                 preferredStyle: .alert)
 
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) {_ in
+        let settingsAction = UIAlertAction(title: "setting_alert".localized, style: .default) {_ in
 
             guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
 
@@ -201,7 +211,7 @@ extension MapViewController: MapViewProtocol {
             }
 
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: "cancel_alert".localized, style: .cancel) { _ in
             UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
         }
         alertController.addAction(settingsAction)
